@@ -1,141 +1,156 @@
 java c
-ECON10151   Lecture   6 
-Introduction to Visual   Basic for Applications   (VBA) 
-Nov   2024
-Learning Outcomes 
-•    Be able to implement custom VBA functions within   Excel   to   perform   complex   calculations
-•    Be able to   understand and   apply VBA   loop   structures,   allowing   them   to   automate   repetitive   calculations   across datasets
-Introduction This lecture introduces students to the power of   Excel VBA as   a tool for   automating   calculations   and   efﬁciently   handling   repetitive tasks   in   data   processing.   We will   start with   creating   a   custom   VBA function,   which   allows   us   to   perform   complex   calculations   that   Excel’s   built-in   functions   might   not   support   directly.    Building   on   this,   we’ll explore   how to use VBA   loops to extend these functions   across   multiple   rows,   automating the   calculation   for an entire dataset in just a few steps.   Writing the code yourself is not a requirement   for this course;   however,   it   is   more   important to   understand the code and   its   meaning.
-1 Set Up 
-The Visual   Basic editor   is   located   under the   Developer tab.   However, the   Developer tab   is   not displayed   in the   Excel   ribbon   by default,   but you can easily add   it   to   access   VBA   editor.
-•    For Windows   Users
-1.    Click   on the   File   tab.
-2.    Select Options.
-3.    In the   Excel Options window, choose   Customise   Ribbon.
-4.    In the Customise the   Ribbon section, locate the Main Tabs   list   and check the   box   next to   Developer.
-5.    Click OK to   apply the   changes.
-• For   Mac   Users
-1.    Click on   Excel   in   the   top   menu.
-2.    Preferences.
-3.    Choose   Ribbon    Toolbar.
-4.      the Customise the   Ribbon section, ﬁnd the   Main Tabs   list and   check the   box   next to   Developer.
-5.    Click Save to conﬁrm   the   changes.
-2 Introduction to Visual Basic for Applications (VBA) Visual      Basic   for   Applications      (VBA)      is   a   programming      language   developed   by      Microsoft   that      is   embedded   within      Excel   and   other   Ofﬁce   applications.      VBA   enables   users   to   automate   repetitive   tasks,   enhance   data   analysis, and create custom functions and solutions tailored to speciﬁcneeds.
-Overview of VBA Editor 
-The VBA   Editor   is the environment within   Excel where you write   and   edit   VBA   code.
-•    Code Window: Where you type and   edit   your   VBA   code.
-•    Project    Explorer:    A    navigation   pane   that   shows   all   the   open   VBA   projects   and   the   components,      like   modules and worksheets, within them.
-•    Properties Window: Allows you to view and   modify   properties for   selected   objects.
-•    Immediate Window:    Useful for testing   and debugging code   on   the   spot   by   allowing   you   to   run   individual   lines or   commands.
-You can access the VBA   Editor by   going to the   Developer   tab   in   Excel   and   selecting   Visual   Basic.   In the VBA code window, different colours are   used to   represent   various   elements   of   the   code.
-• Black:
-Standard Code:   This is the default colour for regular text,   including variable   names, function   names,   and   most code statements.
-• Blue:
-Keywords:   This colour is used for VBA keywords   and   reserved words   (e.g.,   Sub,   Function,   End,   If, Then,   Else,   For,   Next).   Keywords are commands that VBA   recognises and   interprets.
-• Green:
-Comments:   Any text following an apostrophe   (’) appears   in   green.   Comments   are   not   executed   and   are   used to explain the code or   provide   notes for   the   programmer.
-Please ﬁnd   below a screenshot of the VBA   Editor window   along with   an   illustration.
+ECON10151   Lecture 4
+Managing   Data with   Excel   Functions
+Oct   2024
+Learning Outcomes
+•    Be   able to   effectively   retrieve data from   a dataset   using   VLOOKUP,   INDEX,   and   MATCH   functions,   and   apply them to   large datasets.
+•    Understand the   differences   and   use   cases   of   VLOOKUP versus   INDEX   and   MATCH,   enabling them   to   choose the appropriate function based on specific data   retrieval   needs.
+IntroductionExcel   offers   a   wide   range   of   powerful   functions   that   can   help   you   manage,   analyse,   and   extract   valuable   insights from data.   This week, we’ll focus on three key functions that   are   essential for working with   data   effec-   tively:   VLOOKUP,   MATCH,   and   INDEX.   These   functions   will   enable   you   to   quickly   find   specific   information,   locatedata within a table, and   retrieve values from different parts of   your   dataset.
+1         VLOOKUP
+In   this   section,   we   will   explore   the   syntax   of   VLOOKUP   and   will   break   down   the   arguments   so   that   you   can understand   how they work.
+1.1         VLOOKUP   Syntax
+The   VLOOKUP   function   searches   for   a   value   in   the   first   column   of   a   table   and   returns   a   value   in   the   same   row from another column.
+Syntax:
+=VLOOKUP(lookup   value,      table   array,    col         index   num,      [range   lookup])
+Arguments:
+•    lookup   value:   The value you want to search for in the first column   of the table.
+•   table   array:    The   range   of   cells   that   contains   the   data.      The   first   column   of   this   range   is   where   the   lookup   value will be searched.
+•    col         index   num:   The   column   number   (starting   from   1) from   which   you   want   to   retrieve   the   value.
+•      [range   lookup]   : An   optional   argument.   Use   TRUE   for   an   approximate   match   or   FALSE   for   an   exact   match.   FALSE   is   recommended   for   most   cases   to   ensure   accurate   results.
+1.2            Practice   with   VLOOKUP
+InstructionsIn   this   exercise, you   will   practice   using   the   VLOOKUP   function   in   Excel   to   retrieve   specific   data   from   a   table.   You will be working with a dataset that contains information about students, their departments, academic year, and   GPA.   Follow the tasks below to complete the   exercise.
+Dataset
+The dataset contains the following columns:
+•      Student   ID:   Unique   identifier for each student.
+•    Name:   Name   of   the   student.
+•    Department:   The department the student belongs to.
+•   Year:   The academic year of the   student.
+•    GPA: The   student’s   Grade   Point   Average.
+Task   1:   Find   GPA   for   Given   Students
+You are provided with the   names   of two   students:
+•   Alice   Smith
+•    George   Patel
+Your   task   is   to   use   the   VLOOKUP   function   to   find   their   GPAs   from   the   dataset.   Follow   these   steps:
+1.    Open   Excel L4   Data and work on the worksheet   named   as   VLOOKUP.
+2.    In cells   B15 and   B16,   use the VLOOKUP   function   to   find   the   GPA   for   each   of   the   two   students.
+3.    Syntax   of   VLOOKUP:
+=VLOOKUP(lookup   value,      table   array,    col         index   num,      [range   lookup])
+4.      Setup
+•    lookup   value:   The value you want to search for in the first column of the table.
+- Set   it   to   the   student’s   name.
+•   table   array:   The range of cells that contains the data.   The first column   of this   range   is where   the   lookup   value will be searched.
+- Select the data   range covering the columns from   Student   Name to   GPA.
+•    col         index   num:   The column   number   (starting from   1) from which you want to   retrieve the value.
+-   It   is   the   GPA   column, which   is   the   4th   column   in   the   range.
+•      range   lookup:   An optional argument.   Use TRUE for an approximate   match   or   FALSE for   an   exact   match.
+- We set   it to FALSE to   ensure   an   exact   match   is   found.
+Remember:      Make   sure   the   lookup   value   is   in   the   first   column   of   the   table   array.      Therefore,   when   you   select data for the table array, ensure that the   student   names   are   in the first   column   of   this   array.
+The   GPA   for   Alice   Smith:             = VLOOKUP(A15,      $B$2:$E$11,    4,      FALSE)
+The   GPA   for   George   Patel:             = VLOOKUP(A16,    $B$2:$E$11,      4,      FALSE)
+5.      Graphical   illustration of the formula:
+   
+Figure   1:   Task   1 VLOOKUP   Example
+6.    Report   the   GPAs   for   Alice   Smith   and   George   Patel.    You   should   obtain   the   following   results   once   you   have entered the formula.
+   
+Figure   2:   Task   1   Results
+Task 2:   Check   if Student   Name   Exists   in the   Dataset
+You are given the   following   names:
+•   Julia   Fernandez
+•    Michael   Green
+Your   task   is   to   use   the   VLOOKUP   function   to   check   if   these   names   exist   in   the   dataset.   Follow   these   steps:
+1.   Think:   How   to   use   VLOOKUP
+If   the   name   exists,   return   the   corresponding   Name   from   the   list.    If   not, the   function   should   return   an   error (such   as   #N/A).
+2.    Syntax   of   VLOOKUP:
+=VLOOKUP(lookup   value,      table   array,    col         index   num,    FALSE)
+3.      Setup
+•    lookup   value:   The value you want to search for in the first column of the table.
+- Set   it   to   the   student’s   name.
+•   table   array:   The range of cells that contains the data.   The first column   of this   range   is where   the   lookup   value will be searched.
+-   Define table   array as   the data range covering the single column   of   Student   Name.
+•    col         index   num:   The column   number   (starting from   1) from which you want to   retrieve the value.
+- Assign   col         index   num to the first column, which is the only   column   in the   range.
+•      range   lookup:   An optional argument.   Use TRUE for an approximate   match   or   FALSE for   an   exact   match.
+- Set   range   lookup   to   FALSE   to   ensure   that   an   exact   match   is   found.
+Remember:      Make   sure   the   lookup   value   is   in   the   first   column   of   the   table   array.      Therefore,   when   you   select data for the table array, ensure that the   student   names   are   in the first   column   of   this   array.
+Julia   Fernandez:      代 写ECON10151 Lecture 4 Managing Data with Excel FunctionsR
+代做程序编程语言       = VLOOKUP(A20,$B$2:$B$11,1,FALSE)
+Michael   Green:             = VLOOKUP(A21,$B$2:$B$11,1,FALSE)
+4.      Graphical   illustration of the formula:
+   
+Figure   3:   Task   2 VLOOKUP   Example
+5.    Report whether   each   of   the   two   names   is   found   in   the   dataset.    You   should   obtain   the   following   results   once you   have entered the formula.
+   
+Figure   4:   Task   2   Results
+This suggests that Julia   Fernandez   is   included   in the dataset;   however,   Michael Green   is   not   on   the   list,   as   it   returns   an   error   (#N/A   )in   the   cell.
+2         INDEX and   MATCHIn this section, we will   briefly explore the   syntax   of the   INDEX   and   MATCH   functions.   The   INDEX   function   returns   a   value   based   on   specified   row   and   column   numbers   within   a   given   array,   while   the   MATCH   function   finds   the position of a value   in   a   row   or   column.
+We will break down their arguments to   help you   understand   how each   function works.
+INDEXThe   INDEX   function   returns   the   value   in   a   specified   cell.    You   need   to   know   the   row   and   column   numbers   of   the   cell   within   an   array   so   that   Excel   can   locate   its   position.    Once   identified,   the   function   returns   the   value   contained in   that   cell.
+Syntax:
+=INDEX(array,      row   num,      [column   num])
+Arguments:
+•    array:   The   range of cells that contains the data from which you want to   retrieve   a value.
+•      row   num:   The   row   number   in   the   array   from   which   you   want   to   retrieve   a   value.
+•      [column   num]   :   The   optional   column   number   in   the   array.   If   omitted, the   function   will   return   the   value   from the first column.
+MATCH
+The   MATCH   function   searches   for   a   specified   value   in   a   specific   column   or   a   row   and   returns   the   relative   position   of   that   value.
+Syntax:
+=MATCH(lookup   value,      lookup   array,      [match   type])
+Arguments:
+•    lookup   value:   The value you want to search for in the   array.
+•    lookup   array:   The   range   of   cells   that   contains   the   data   you   want   to   search.    The   lookup   array   here   can only be a   single   column   or   a   single   row.
+•      [match   type]   :   An optional argument.    It specifies   how   Excel should   match the   lookup   value.    Use   1   for   the   largest   valueless   than   or   equal   to   the   lookup   value, 0 for   an   exact   match, or   -1 for   the   smallest   value greater than or equal to the   lookup value.   For   most scenarios, 0   is   preferred   to   ensure   an   exact   match.
 
-3 Practice with VBA 
-Task 
-In country A, the amount of   income tax   owed depends   on the   individual’s   annual   income,   as   follows:
-Table   1:   Tax   Rates and   Bands
-Tax Rate 
-Income 
-0% 
-Up to £13,000 
-20% 
-£13,000.01 to   £50,000 
-40% 
-Above   £50,000 
-In the   Excel ﬁle called   L6 data,   it contains the annual   income for   ten   individuals.
-Please calculate how much tax each individual should pay. 
-Understanding of This Task 
-1.      If x ≤   13;   000:
-The tax   rate   is 0%.   The person   has   to   pay:
-Tax   =   0
-2.      If   13;   000   < x ≤ 50; 000:
-The tax   rate   is 20% for the amount above £13,000.   The   person   has   to   pay:   Tax   =   0.2   × (x   —   13;   000)
-3.      If   x   ≥   50;   000:
-• The tax   rate   is 20% for the amount   greater than £13,000 and   less   than   or   equal   to   £50,000.
-• The tax   rate   is 40% for the amount greater   than   £50,000.
-The person   has to   pay:
-Tax   =   0.2   × (50;   000 — 13;   000)   + 0.4   ×   (x —   50;   000)
-Approach 1: Create a VBA Function for Income Tax Calculation 
-1.    Open the   VBA   Editor
-•    Open your Excel workbook, go to the   Developer tab, and   click   on   Visual   Basic.
-(Altenatively,   Press Alt   +   F11 to open the Visual   Basic for   Applications   (VBA)   editor.)
-2.    Insert   a   New   Module
-•    In the VBA editor,   go   to   the   menu   and   click   on   Insert.
-•    Select Module.   This will create a   new   module where you can write   your   code.
-3.      Write the   Function
-To create a   new function,   please   read through the   following   procedure,   including the   code   and   explana-   tion.   Once you   understand them, enter the following VBA code   into the   new   module:
-• Deﬁne the Function: 
-Function CalculateIncomeTax(income As   Double) As   DoubleThis   deﬁnes   a   function      named   CalculateIncomeTax   that   takes   a   single   arg代 写ECON10151 Lecture 6 Introduction to Visual Basic for Applications (VBA)Matlab
-代做程序编程语言ument      (income)   and   returns   a Double.   Double is   short for   ”double   precision ﬂoating-point”   and   is   typically   used   to   store   numbers that   require a   large   range and/or precision,   including decimals.
-• Variable Declaration:
-Dim Tax   As   Double
-This declares a variable to   hold the calculated tax.
-• Specify If Statements:
-If income <=13000 Then
-Tax = 0
-ElseIf income > 13000 And income <=50000 Then
-Tax = 0.2 * (income - 13000)
-Else
-Tax = 0.2 * (50000 - 13000) + 0.4 * (income - 50000)
-End If
 
-The ﬁrst   If checks if the income is less   than   or   equal   to   £13,000   and   sets   the   tax   to   0.   The   second   ElseIf   checks   if   the   income   is   between   £13,000.01   and   £50,000   and   calculates   the   tax   at   20%.   The ﬁnal Else block calculates the tax for   incomes above £50,000   using   the   respective   rates.
-• Return Value:
-CalculateIncomeTax = tax
-This   assigns the   calculated tax to the   function   name,   which   returns   the   value   when   the   function   is   called.
-• Function Completed:
-End Function
-This   indicates that the deﬁnition of the function   has been   completed.   The code that you should type   into the   module will   be   displayed   below.
+2.1            Practice   with   INDEX   and   MATCH
+Task   1:   Obtain the GPA of the Student with   ID   33104   Using   INDEX   and   MATCHManually   finding   a   student’s   GPA   would   involve   identifying   the   correct   row   where   the   Student   ID   appears   and then locating the GPA in the corresponding column.   For small datasets, this is   simple,   but   as datasets   grow   larger, manually   finding   this   information   becomes   prone   to   error   and   time-consuming.   With   Excel’s   INDEX and   MATCH   functions, we   can   automate   this   task   and   ensure   accuracy.   Thus,   in   this   task,   we   can   use   MATCH to find   out the   row   number   and the   column   number.    Then,   INDEX   can   return the   value   of   GPA   based   on the   row   number of Student   ID and the   column   number   of   GPA.
+Your   objective   is   to   find   the   GPA   of   the   student   with   the   Student   ID:   33104.    To   achieve   this   goal,   we   can follow these steps:
+1.    Use   the   MATCH   function   to   find   the   row   number   where   the   Student   ID   33104   is   located.
+•    (Worksheet:   MATCH   and   INDEX)   Begin   with   the   cell   I7 and   type   MATCH   formula   in   the   cell.
+•    Syntax   of   MATCH:
+=MATCH(lookup   value,      lookup   array,      [match   type]).
+•      Setup
+。lookup   value:   The value you want to search for in   the array.
+- This   case,   it   is   33104   (the   Student   ID   you’re   looking   for).
+。lookup   array:   The range of cells that contains the data you want to search.   The lookup   array   here can only be a   single   column   or   a   single   row.
+- We select the column of Student   IDs   (column   A   in   the   dataset).
+。   [match   type] should   be   set   to   0 for   an   exact   match.
+The   row   number   of   Student   ID   33104:
+= MATCH(H7,    A2:A11,    0)
+•      Graphical   illustration of the   formula:
+   
+   
+Figure 5:   Task   1   MATCH   Example:   row   no.
+   
+2.    Use   the   MATCH   function   to   find   the   column   number   where   the   GPA   is   located.
+•    Begin   with   the   cell   I11 and   type   MATCH   formula   in   the   cell.
+•    Syntax   of   MATCH:
+   
+=MATCH(lookup   value,      lookup   array,      [match   type]).
+•      Setup
 
 
 
-4.    Save Your   Work
-•    Make sure to save your   Excel   workbook   as   a   Macro-Enabled   Workbook   (.xlsm   format)   to   preserve   the VBA   code.
-5.    Use the   Function   in   Excel
-•    In any cell in your   Excel worksheet,   you   can   now   use   your   new   function.
-For example,   if you want to calculate the tax for   the   ﬁrst   person,   you would   type   the   following   in   cell   C2:
-=CalculateIncomeTax(B2)
-Press   Enter, and   Excel will return   the calculated income tax based on the   rules deﬁned   in your VBA   function.
-•    Now, you can apply the function to   determine the   tax   that   should   be   paid   by the   other   individuals   in   the dataset.
-Approach 2: Using Loops for Batch Income Tax Calculation Alternatively,   we   can   use   a      loop   in   VBA   to   calculate   the   income   tax   for      multiple   individuals   at   once.         This   method allows you to process each individual’s income in a single   procedure.   Follow these steps to   implement   this approach:
-1.    Open   VBA   editor
-•    Go to the Developer tab   in the   Excel   ribbon.   Click on Visual   Basic   to   open   the   VBA   editor.
-•    Click on Module   1.   We will write   new code   in the section   below where we   created   the   function.
-2.      Write the   Loop   CodeTo code the   procedure, we   need to clarify what we want   to   achieve.   We   will   use   the   range   C2   to   display   the tax   amounts   owed   by   each   individual.   The ﬁrst   output cell   is   C2.   To calculate the   tax   for   C2,   we   will   use the      CalculateIncomeTax    function that we just created.   The input for this function will be the value in   cell   B2.   Excel will pass the value of   B2 to the    CalculateIncomeTax      function   and   return   the   result   in   C2.Next,   Excel   will   move   to   the   following   row,   using   the   value   in   B3   as   input   for   the   function   and   returning   the   tax   amount   in   C3.    This   process   will   continue   for   each   row   until   we   reach   the   last   individual   in   the   dataset.
-Let’s follow these steps to code   the   procedure:
-• Deﬁne the Procedure:
-Sub CalculateTaxesForAll()
-• Deﬁne Variables: 
-Dim   i As   Integer
-This   line declares a variable   i as an   integer, which will be   used   as   a   loop   counter.
-Dim   income As   Double
-This   line declares a variable income as a double, which will   store   the   income   value for   each   individ-   ual as a ﬂoating-point   number   (allowing for   decimals).
-Dim lastRow As Long
-This   line declares a variable   lastRow as a   long   integer, which will   hold the   number   of the   last   row   in   the   income column with data.
-• Specify the number of rows in the dataset
-lastRow = Cells(Rows.Count, ”B”).End(xlUp).RowThis   line   ﬁnds   the   last   row   of   data   in   column   B(income   values).         It   starts   from   the   bottom   of   the   worksheet   (Rows.Count   gives   the   total   number   of   rows)   and   moves   up   until   it   ﬁnds   the   last   non-   empty cell   in column   B. This value   is stored   in   the   lastRow variable.
-• Deﬁne the procedure:
-For i = 2 To lastRow
-This line initiates a   For loop that starts at   row 2   (the ﬁrst   row of   data)   and continues to   lastRow.   The   loop   iterates through each   row containing   income data.
-income = Cells(i, 2).Value
-This   line   reads the   income value from column   B   (the ﬁrst column) of the current   row   i and   assigns   it   to the   income variable.
-Cells(i, 3).Value = CalculateIncomeTax(income)
-This   line   calls   the   previously   deﬁned CalculateIncomeTax function,   passing   the   income   value   as
-an   argument.      It takes the   result   (the calculated tax)   and writes   it   to   column   C   (the   third   column)   of   the same   row   i.
-Next i
-This   line   indicates the   end   of the   loop.    The   loop   continues with the   next value   of   i   until   it   reaches   lastRow.
-The code that you should type   into the   module will   be   displayed   below.
-
-3.    Run the Code   and   Review   the   Results
-•    Click on the worksheet TaxCalculation2, then go   to   the   Developer   Tab.
-•    From the ribbon   menu, click on   Macros, select CalculateTaxesForAll,   and   then   click   on   Run.
-You will   now see the calculated taxes for   all   individuals   in the   dataset.
+。lookup   value:   The value you want to search for in   the array.
+-   It   is   GPA   (the   header   you   are   looking   for   in   the   row,   including   all   headers).
+。lookup   array:   The range of cells that contains the data you want to search.   The lookup   array   here can only be a   single   column   or   a   single   row.
+- We   select   the   row   of   headers   (Row   1   in   the   dataset).   。   [match   type] should   be   set   to   0 for   an   exact   match.
+The column   number of   GPA:
+= MATCH(H11,A1:E1,0)
+•      Graphical   illustration of the   formula
+   
+Figure   6:   Task   1   MATCH   Example:   column   no.
+3.    Use   the   INDEX   function   to   return   the   GPA   of   the   student   with   ID   33104
+We can fill in the INDEX function based on the row number   and the column   number found   using the MATCH   function.
+•    Begin   with   the   cell   I17 and   type   INDEX   formula   in   the   cell.
+•    Syntax   of   INDEX: =INDEX(array,    row   num,       [column   num])
+•      Setup
+。array contains all of the values in this   student   information data   set.   。row   num   corresponds   to   the   row   number   of   the   student   ID   33104.
+。col   num corresponds to the column   number where GPA   is   located.
+The   GPA   of   the   student   with   ID   33104:
+= INDEX(A1:E11,I7,I11)
+•      Graphical   illustration of the   formula:
+   
+Figure   7:   Task1   INDEX   Example
 
          
 加QQ：99515681  WX：codinghelp  Email: 99515681@qq.com
