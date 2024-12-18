@@ -1,134 +1,151 @@
 java c
-Lecture   2:   Excel   Solver 
-ECON10151:   Computing   for   Social   Scientists 
-September   29, 2024 Excel’s   Solver   is   a   versatile   tool   designed   to   help   users   find   optimal   solutions   to   complex   decision-making   problems.   Whether   you’re   allocating   resources   in   finance,   managing   supply   chains   in   logistics,   or   scheduling   operations,   Solver   allows   you to work within constraints and identify the best outcome,   such as   maximising profits   or   minimising   costs.For example, imagine you’re managing   a factory   and   need   to   determine   the   ideal   production   levels   of two   products,   given   a limited supply of materials and labour.   Solver can help you calculate the most efficient allocation that maximises profit   while   staying within your resource limits.In   essence,   Solver   takes   your   objective—like   increasing   profit   or reducing   expenses—and   tests   different   combinations   of   variables,   subject to the constraints you   set.   It   simplifies decision-making   where   trade-offs   are   involved,   ensuring   the   result   is   not   just mathematically sound but also practical for real-world scenarios.
-1 How to Install Excel Solver 
-Solver is an Excel add-in that doesn’t load   automatically   when   you   install   Excel,   but   it’s   easy   to   enable.   Whether   you’re   using   a Mac or Windows, the steps are straightforward, though   they   differ   slightly between   the   two   operating   systems.
-1.1 Mac 
-To install Solver on a   Mac,   follow   these   steps:
-1.    Open   Excel.
-2.    Click   on   the   Tools   menu   at   the   top.
-3.    Select   Excel   Add-Ins.
-4.    In the Add-Ins   available list, tick the box   for   Solver   Add-In.
-5.    Click   OK.
-6. Note: 
-•    If Solver   Add-In isn’t listed, click   Browse to find   and install   it.
-• If   you’re   prompted   to   install   the   Solver   Add-In, select   Yes.
-7.    Once   installed, you’ll   see   the   Solver   button   under   the   Data   tab.
-1.2 Windows 
-To install Solver on Windows, follow these   steps:
-1.    Open   Excel.
-2.    Click   File   in   the   top-left   corner, then   select   Options.
-3.    In   the   Excel   Options   window,   click   Add-Ins.
-4.    At   the   bottom   of   the   window, next   to   Manage, ensure   Excel   Add-ins   is   selected, then   click   Go.
-5.    Tick the box for Solver   Add-In in   the   Add-Ins   available list.
-6.    Click   OK.
-7. Note: 
-• If   the   Solver   Add-In   is   missing   from   the   list, click   Browse   to   locate   and   install   it.
-• If   asked   to   install   the   Solver   Add-In,   select   Yes.
-8.    Once   installed, you’ll   find   the   Solver   button   in   the   Analysis   group   on   the   Data   tab.
-2 A Worked Example: Diet Optimisation In this example,   we’ll explore   a practical   scenario   often   faced by   fitness   trainers   and   dieticians:   how   to   create   a   cost-effective   yet nutritionally balanced meal plan.   Using Excel Solver, we’ll navigate through the constraints of   this problem to optimise our   meal choices,aiming for the best nutritional outcome at the lowest cost.
-Let’s   consider   four   meal   options:      Salad,   Protein   Shake,   Grilled   Chicken,   and   Pasta.    Each   of these   meals   offers   different   nutritional values and comes with a   specific   cost:
+Lecture   1:   Basic   Data   Analysis   using   Excel
+ECON10151:   Computing   for   Social   Scientists
+September   22, 2024In this lecture, we’ll introduce some key features of   Excel that are especially useful when working with   social   science   data.   Excel has a variety of   tools designed to make data analysis quicker and more efficient.   Today, we’ll focus on essential functions   and   techniques   that   will   help   you   clean   and   format   datasets,   create   new   variables,   carry   out basic   statistical   calculations,   and   generate   simple   visualisations.    By   working   through   practical   examples,   you’ll   gain   hands-on   experience,   equipping   you   to   apply these tools to your own data with   confidence.
+1            Data
+The   dataset   we   will   be   working   with   contains   the   average   price   and   quantity   of hand   washing   products   sold   in   the   UK   each   month during 2020.   This data was sourced from the Kantar FMCG   Purchase   Panel.
+For this exercise, we will   assume:
+•    The   firm’s   variable   cost   is   £3 per   unit   of   quantity.
+Variable costs are expenses that fluctuate with production or   sales volume.   Common   examples   include:
+–    Raw materials:   The cost of materials required to produce each unit.
+–    Direct labour:   Wages paid to workers based on the number of units produced or hours worked.
+–    Packaging:   Costs associated with packaging each product.
+•    The   firm’s   fixed   cost   is   £8,500.
+Fixed costs remain the same, regardless of   production levels.   Typical fixed costs   include:
+–    Rent   payments:   The   cost   of   leasing   a   building   or   office   space.
+–    Insurance:   Premiums paid for coverage, which do not vary with output.
+–    Depreciation:   The gradual reduction in   the value of fixed assets like machinery or   equipment.
+Please download the spreadsheet titled ‘raw data’ from Blackboard to   get   started.
+2          From   Raw   Data   to   Profit   Analysis
+We’ll follow a step-by-step approach to analyse   the profit   from   sales.
+2.1          Cleaning   DataProperly organising your data is the first crucial step in preparing it for analysis.   Sometimes, we deal with imported   or unstruc-   tured   data   where   multiple   pieces   of   information   are   combined   into   a   single   cell, which   needs   to   be   split   for   proper   analysis—just like the raw data we’re working   with.
+In Excel, the   Text   to   Columns function is   an effective   data-splitting   tool   for   separating   data   contained   in   one   column   into   multiple columns, based on a specific delimiter   (such as   a   comma,   space,   or   tab).   Here’s   how   to   use   it:
 
-Salad 
-Protein Shake 
-Grilled Chicken 
-Pasta 
-Calories 
-300 
-250 
-450 
-600 
-Protein (g) 
-10 
-30 
-35 
-12 
-Fat (g) 
-7 
-3 
-10 
-15 
-Cost ($) 
-6.5 
-5 
-12 
-8 
-The challenge is to create a   meal plan   that meets specific nutritional goals while minimising the total cost.   In   this   case,   the goals   are:
-• At   least   1800 calories   per   day,
-• A   minimum   of   90 grams   of   protein,
-• No   more   than   45 grams   of   fat.Here’s how   Solver comes into play.   We need   to   select   the   number   of   servings   of each   meal   (Salad,   Protein   Shake,   Grilled   Chicken, and Pasta) that together satisfy these nutritional requirements.   At the   same   time,   we   aim   to   minimise   the   total   cost   of   the meal plan.   This type of   problem is ideal for Solver, as it allows us   to   work   within   defined   constraints   (calories, protein,   and   fat limits) while optimising for cost.For example, you might have   a   client   with   a   fixed   daily   budget   but   also   the   need   to   maintain   certain   nutritional   standards.   By   inputting   the   nutritional   data   and   cost   for   each   meal   into   Excel,   Solver   can   identify   the   most   cost-effective   combination   that   achieves   the   target   nutritional   intake.    This   not   only   saves   time   but   also   ensures   that   the   plan   is   scientifically   backed   by   quantitative analysis.
-3 How to Use Solver in a Nutshell To   effectively   use   Excel   Solver   for   optimisation   problems, follow   these   key   steps.   Solver   works   by   varying   the   values   of   specific variables   (behind   the   scenes)   within   the   limits   you   define   to   find   the best possible   solution   to   your problem.    Here’s   a   simple   guide to get   started:
-1. Construct a Detailed Spreadsheet:    Start   by   organising   your   spreadsheet   with   all   relevant   data.       Make   sure   that   the   problem   components—like   costs,   nutritional   values,   or   other   important   factors—are   clearly   laid   out   so   that   Solver   can   interpret them correctly.
-• Identify Decision Variables: Decision variables are   the   values   Solver   will   adjust   to   find   the   optimal   solution.   In   Excel,   these   are   also   known   as Changing Cells.    For   example,   in   the   diet   optimisation   problem,   the   decision   variables are the number of servings of each meal option.
-• Define the Objective Function:   The objective function is   what   you   want   to   optimise,   such   as   minimising   cost   or   maximising profit.   In Solver, this is referred to   as the Set Objective.   In   our   diet   example,   the   objective   function   is the total cost of the meal plan, which we   aim   to   minimise.
-• Incorporate Constraints: Constraints are   the   rules   or   limits   that   your   solution   must   follow,   such   as   nutritional   needs   or budget   limits.    These   ensure   that   Solver’s   solution   makes   sense   in real-world   situations.    In   our   case,   the   constraints   are the minimum and maximum nutritional goals,   like   needing   at   least   1800   calories   and   no   more   than 45 grams   of   fat.
-2. Run Solver:    Once   your   spreadsheet   is   set   up   with   the   decision   variables,   objective   function,    and   constraints,   you’re   ready to run Solver.   Head to the   Data tab,   click   on   Solver,   and   it   will   begin   adjusting   the   decision   variables   within   your   constraints to find the best possible outcome.
-3. Review the Solution:   After   Solver   has   finished,   it   will   display   the   optimal   solution   directly   in   your   spreadsheet.    This   will include the values for the decision variables that   best   meet   your   objective,   while   adhering   to   the   constraints.   At   this   point, you can check the results and ensure they are   sensible for your particular problem.By following these   steps, you can   confidently   use   Solver   for   various   optimisation   challenges,   whether   it’s   finding   the best   resource   allocation, balancing   a budget,   or creating cost-effective   diets.    Solver handles   the   complex   calculations,   leaving   you   to focus on analysing the results and making informed decisions.
-4 Solving the Diet Optimisation Problem 
-4.1 Setting up the Spreadsheet To   solve   the   diet   optimisation   problem   using   Excel   Solver, we   need 代 写ECON10151: Computing for Social Scientists Lecture 2: Excel SolverSQL
-代做程序编程语言  to   organise   our   data   so   that   Solver   can   process   it   efficiently.   This   involves   defining   the   decision   variables,   setting   up   the   objective   function,   and   establishing   the   necessary   constraints.   Follow these steps to set   up   your   spreadsheet:
-Step 1: Define the Decision Variables 
-• In   cells   B2 :   E2, create   headings   for   each   type   of   food   (e.g.,   Salad, Protein   Shake,   Grilled   Chicken,   Pasta).
-•    In   cells   B3 :   E3, enter   initial   trial   values   for   the   amount   of   each   food   to   include   in   the   meal   plan.   Make   sure   at   least   one of the values is greater than zero to allow Solver to work with   a   non-empty   starting point.
-Step 2: Set up the Objective Function 
-• Reference the   number   of   units   of   each   food   from   your   decision   variables   by   entering   =B3,   =C3,   etc.,   in   cells   B7 :   E7.
-– It’s important to reference the number of   units rather than manually typing them.   By referencing, any   changes made   to   the   decision   variables   (in   B3   :   E3)   will   automatically   update   the   rest   of your   calculations.    This   not   only   saves   time but also reduces the risk of errors, ensuring consistency across your calculations.
-• In   cells   B8 :   E8, input   the   cost   per   unit   for   each   food   item   (e.g.,   6.5 for   Salad,   5 for   Protein   Shake,   etc.).
-•    To calculate the total cost of the meal   plan,   use   the   SUMPRODUCT function   in   cell   B10.   The   formula   will   look   like   this:   = SUMPRODUCT(B7 :   E7,   B8 :   E8)The SUMPRODUCT function multiplies   the number of   units of each food (in   B7 :   E7) by its respective cost (in   B8   :   E8),   and then   sums   the   results.    This   function   essentially   performs   element-wise   multiplication   of   B7 × B8,   C7 ×   C8,   and   so   on,   then adds them together.   The formula is equivalent to:
-Total   Cost   = B7 × B8+C7 ×   C8+ D7 × D8+ E7 × E8
-This gives the total cost of the diet based on the quantities you have   selected   for   each   food.
-Step 3: Establish the Constraints 
-•    Recreate   the   table   from   the   problem   statement,   listing   the   nutritional   information   (calories,   protein,   fat)   for   each   food   item in cells   B14   :   E16.
-•    Use the SUMPRODUCT function again to calculate the total nutrients based on the amounts chosen in the decision variables.   For example, to calculate total calories, use:
-= SUMPRODUCT($B$7 : $E$7,   B14 :   E14) 
-This will give you the total calories consumed based on the   servings of each food. 
-–    Note: The dollar   signs   ($$) in the formula   ensure   that   the   cell   references   remain   fixed   (absolute   references)   when   copying the formula to other cells.
-• In   Column   G, specify   the   inequalities   for   your   constraints   (e.g.,   >=      1800 for   calories,   <= 45 for fat).
-• In   Column   H, enter   the   target   values   for   each   constraint   (e.g.,   1800   for   calories,   45   for   fat).
-By following these   steps, you will have   constructed   a   well-organised   spreadsheet   that   Solver   can   use   to   optimise   the   meal   plan.   Once everything is set up, you are ready to run   Solver   and find   the best   solution.
-4.2 The Solver Parameters Dialog Box 
-To effectively use Solver, follow these   steps:
-1. Open the Solver Parameters Dialog Box 
-Begin by navigating to   Data   >   Solver to open the Solver Parameters Dialog Box.
-2. Set the Objective and Problem Type In   this   step:
-•    In   the   "Set   Objective" box,   specify   the   cell   that   calculates   the   objective   function   (e.g.,   Cell   B10,   which   calculates the total cost).
-•    Choose whether you want to minimise or maximise   the   objective.   For   our   problem,   since   we   want   to   minimise   the   total   cost,   select   "   Min".
-3. Identify Decision Variables 
-Next, specify the cells that represent your decision variables:
-•    Click in the "By   Changing   Variable   Cells" box.
-•    Select   the   cells   containing   the   decision   variables   (e.g.,   B3 :   E3).    These   are   the   cells   Solver   will   adjust   to   find   the optimal solution.
-4. Add Constraints 
-To ensure that Solver respects the constraints in the problem:
-• Click   the   "Add" button   on   the   right.
-•    In   the   "Cell   Reference" box,   select   the   cell   that   calculates   the   total   for   the   constraint   (e.g., for   calories,   choose   Cell F14, which   sums   the   total   calories   consumed).
-•    Choose   the   appropriate   constraint   type   (<=, >=, =) and   then   input   the   target   value   for   that   constraint   (e.g., Cell   H14,   which   specifies   at   least   1800   calories).
-•    Click   "OK" to   add   the   constraint.
-Repeat this process for each constraint (e.g., protein, fat) to ensure   Solver respects   all nutritional requirements.
-5. Make Variables Non-Negative 
-Ensure all decision variables remain non-negative:
-•    Check   the   box   titled    "Make    Unconstrained   Variables    Non-Negative".       This   ensures   that   all   variable   values   are   greater than or equal to zero, meaning Solver won’t   suggest negative   servings   of food.
-6. Select the Solving Method Choose the solving method:
-•    Select   "Simplex   LP" as the   solving method.   This method   is   appropriate   for   linear programming   problems   like   this one.
-7. Solve the Problem 
-Once everything is   set up:
-•    Click the   "Solve" button to   run   Solver   and   find   the   optimal   solution.    Solver   will   adjust   the   decision   variables   and   provide a solution that minimises   the cost while meeting   all the   constraints.
-4.3 Solution 
-Once you’ve completed the Solver process, you’ll notice the following changes in   your   spreadsheet:
-•    The Solver Parameters Dialog Box will close   automatically.
-• The   values   in   the   decision   variable   cells   (e.g.,   B3 :   E3)   will   update   to   reflect   the   optimal   solution   that   Solver   has   found.
-•    As   a result,   the   objective function   and   caluculations under   constraints in   your   spreadsheet   will   also   adjust   to   reflect   the   updated decision variables.
-This updated information indicates that Solver has successfully applied the   optimal   solution to   your   optimisation problem.
-4.4 Final Remark: 
-In   practical   applications,   serving   sizes   are   usually   represented   as   whole   numbers   (e.g.,   you   can’t   eat   half a   serving   of grilled   chicken).   If the optimal solution contains fractional serving sizes, this might   appear   unusual.
-Question: How might we adjust our constraints or model to ensure   that the   resulting   serving   sizes   are   whole   numbers?
-Answer: To ensure that Solver produces whole numbers for the   serving   sizes,   you   need   to   adjust   the   constraints   to   require   integer values for the decision variables.   Follow these steps:
-• Open   the   Solver   Parameters   Dialog   Box   again   by   clicking   on   Data   >   Solver.
-• Click   the   "Add" button   to   introduce   a   new   constraint.
-• In   the   "Cell   Reference" box,   select   the   cells   representing   the   decision   variables   (e.g.,   B3 :   E3).
-•    In   the   "Constraint"   box,   select   int   (integer),   which   ensures   that   the   values   for   the   decision   variables   are   restricted   to   whole numbers.
-• Click   "OK" to   add   the   constraint, and   then   click   "Solve"   again   to   re-run   Solver   with   the   updated   settings.
-By adding this integer constraint, you ensure   that   Solver provides   solutions   with   whole   number   servings,   which   makes   the   results more practical   for real-life applications.
+
+Step   1    Select the Data:   Highlight the cells containing the text you want   to   split.
+Step   2    Open   ‘Text   to   Columns’:   Go   to   the   Data   tab   and   select   Text   to   Columns.
+Step   3    Choose   ‘Delimited’   :   In   the   dialog   box, choose   Delimited, as   our   data   is   separated   by   commas.
+Step 4    Set Delimiter:   Check the   Comma option as the delimiter (since   the   values   in   the   data   are   comma-separated).
+Step 5    Finish:   Excel will show a preview of how the   data will   look.   Once   you’re   happy   with   the   result,   click   Finish.After   using   Text   to   Columns   to   split   the   data, you   might   notice   that   some   of   the   headers   are   spread   across   multiple   columns.      In   such   cases, manually   adjust   the   headers   by   combining   the   text   and   labelling   them   appropriately   (e.g., “Quantity   Sold   (Litres)”   or   “Price per Litre”).    Ensure that   each row   of data   aligns   correctly   with its   respective   column   before   proceeding   with   further      analysis.
+2.2          Transposing   Data
+Sometimes your data is organised horizontally,   but you need it   vertically—or   vice   versa.   For   example,   your headers   may   be   in   a row when you need them in a column, or data   may be   listed   in   columns but   would be   more   useful   in rows.
+Transposing data in Excel means flipping the   orientation,   converting rows   into   columns   or   columns   into   rows.   This   can   be   very useful when the data’s current format doesn’t suit the   analysis   or   visualisation   you’re   aiming   for.
+We’ll explore two methods to transpose data in Excel during this lecture.
+1.    Paste   Special   Transpose:
+Step   1    Select the Data:   Highlight the range of cells you want to transpose, including headers if necessary.
+Step   2      Copy   the   Data.
+Step   3    Choose   the   Destination:    Click   the   cell,   e.g.   A7,   where   you   want   the   transposed   data   to   appear.    Ensure   there’s   enough space, as transposing will expand the data either   vertically   or horizontally.
+Step   4    Paste   Special:   Navigate   to   Home   tab   →   Paste   →   Paste   Special, or   right-click   on   the   destination   cell   and   choose Paste   Special.
+Step   5    Transpose   the   Data:    In   the      Paste      Special   dialog   box,   select   Values   (to   paste   only   the   values)   and   check   the Transpose option at the bottom.   Then click OK. Your data   will   now   be   flipped   between   rows   and   columns.
+2.    TRANSPOSE Function:
+The   TRANSPOSE   function   is   another   way   to   transpose   data,   and   it   differs   from   the   Paste   Special   method   in   that   it creates a dynamic link.   This means that if the original data changes, the transposed   data will   update   automatically.
+The   syntax is:
+= TRANSPOSE(array)
+Here, the array represents the range of cells to be transposed.
+Follow these   steps:
+Step   1    Choose the Destination:   Again, make sure there’s enough   space.
+Step 2    Enter the Formula:   In the selected range, type the   formula
+= TRANSPOSE(A1 :   N4)
+                       where   A1 :   N4 is   the   range   of   your   original   data.
+Step   3      Press   Enter.
+Note: If   you’re   using   older   versions   of   Excel,   press   ‘Ctrl   +   Shift   +   Enter’ (Windows)   or   ‘Command   +   Return   ’   (Mac), as the   TRANSPOSEfunction requires this to work as an   array   formula.
+
+
+- Summary:
+•    Use   TRANSPOSE if you need   a   live   link between your   original   and   transposed   data.    This   is   ideal   for   datasets   that   are   regularly updated.
+•    Use   Paste   Special when you need a one-time,   static   rearrangement   of your   data   and   don’t require   it   to   update   automati-   cally.
+2.3          Removing   Duplicates
+When   importing   data   from   external   sources   such   as   CSV   files, databases, or   surveys, it’s   common   to   encounter   duplicate   entries.   Redundant data can skew your analysis, so it’s   essential   to remove   any   duplicate   values before proceeding.Manually   identifying   and   removing   duplicate   rows   can   be   time-consuming,   especially   with   large   datasets.      Fortunately,   Excel’s    Remove    Duplicates   feature   helps   you   quickly    find   and   eliminate   duplicate   entries,   ensuring   your   dataset   remains   accurate and free of   redundancy.
+Follow these steps to remove duplicates in Excel:
+Step   1    Select the Data Range:   Highlight the range of cells where you want to remove duplicates.   This can be a single column   or an entire table, depending on   what   you   need.
+Step   2    Open   the   ‘Remove   Duplicates’ Tool:   Go   to   the   Data   tab   and   click   on   Remove   Duplicates.
+Step 3    Choose   Columns   to   Check for   Duplicates:    A   dialog box   will   appear   showing   all the   columns   in   the   selected   range.   Tick or untick the boxes to specify which columns should be   checked   for   duplicates.
+•    If you   select just   one   column,   Excel   will   remove   rows   where   the   value   in   that   column   is   repeated,   even   if other   values   in   the   row   differ.
+•    If   you   select   multiple   columns,   Excel   will   treat   rows   as   duplicates   only   if   the   combination   of   values   in   those   columns is identical.
+Step 4    Click   OK:   Once   you’ve   chosen   the   columns   to   check,   click   OK.   Excel   will   display   a   message   showing   how   many   duplicates were found and removed, and how many unique entries remain.
+- Important Notes:
+•    Removing duplicates is permanent.   Consider creating a backup of   your dataset before using this tool to prevent accidental   data loss.
+•    The   Remove   Duplicates   tool   is   case-insensitive, meaning   it   treats   ‘Judith’ and   ‘judith’   as   duplicates.
+2.4          Creating   New   VariablesOften, creating new variables is essential for deeper analysis.   In this section, we will   create   three   new   variables:   Total   Revenue   (TR), Total Cost (TC), and Profit.   Additionally,   we will   categorise   the   data   by   creating   a   dummy   variable   and   a   string   variable   to indicate whether a profit was   made.
+1.    Calculating   Total   Revenue, Total   Cost,   and   Profit
+We will start by calculating Total Revenue (TR), Total   Cost   (TC),   and   Profit   using   simple   Excel   formulas.   Step   1    Total Revenue (TR): This represents the total income from   sales   and   is   calculated   as:
+TR   = Quantity   Sold   ×   Price
+In   Excel, you   can   enter   this   formula   in   a   new   column.   For   example, in   cell   E8,   type:
+= C8   * D8
+where   C8 contains   the   quantity   sold, and   D8 contains   the   price   for   January.   Step   2    Total   C代 写ECON10151: Computing for Social Scientists Lecture 1: Basic Data Analysis using ExcelPython
+代做程序编程语言ost   (TC): Total   Cost   is   the   sum   of   variable   and   fixed   costs:
+TC = (Variable Cost   ×Quantity Sold)+Fixed Cost
+Recall   that   the   variable   cost   is   £3   per   unit,   and   the   fixed   cost   is   £8,500.   Enter   these   values   in   cells   B21   and   B22   respectively.
+In   Excel, you   can   enter   the   formula   as   follows   in   cell   F8:
+= (3*C8)+$B$22
+Here, $B$22   locks   both   the   column   and   row   reference   to   cell   B22, which   contains   the   fixed   cost   (£8,500), ensuring that the reference cell doesn’t change when copying the formula down to   other rows.
+Step 3    Profit:   Profit is calculated as the difference between   Total   Revenue   and   Total   Cost:
+Profit = TR−TC
+In   Excel, type   the   formula   in   cell   G8 as:
+=   E8   −   F8
+where   E8 contains   TR, and   F8 contains   TC.
+2.    Categorising Profit with a Dummy   VariableNext,   we   will   categorise   profit   by   creating   a   dummy   variable.    A   dummy   variable   is   a   numeric   variable   that   takes   the   value   1 or   0.   Here, we   shall   use   1 to   represent   a   positive   profit,   and   0   will   represent   no   profit   or   a   loss.   We’ll   use   Excel’s   IF function to create this variable.
+The   IF function performs a conditional test and returns one value if   the condition is TRUE and another if   the condition is   FALSE. The syntax is   as   follows:
+= IF(logical_test,          value      if      true,          value      if      false)
+where:
+•    logical_test:   The   condition   to   check   (e.g.,   G8 > 0 to   test   if   profit   is   positive).
+•    value_if_true:   The   value   returned   if   the   condition   is   TRUE   (e.g.,   1).
+•    value_if_false:   The   value   returned   if   the   condition   is   FALSE   (e.g., 0).
+In   this   case, to   create   the   dummy   variable, type   the   following   formula   in   a   new   column   (e.g.,   cell   H8):   = IF(G8   > 0,   1,   0)
+This   formula   assigns   a   value   of   1 if   the   profit   (in   G8)   is   positive, and   0   if   it   is   zero   or   negative.
+3.    Creating   a   String   Variable   for   Profit
+To make the data more descriptive, we can create a string variable that labels whether a profit was made.   Instead of   using   numeric   values, we   will   use   "YES" for   profit   and   "NO" for   no   profit.
+In   a   new   column   (e.g.,   I8), use   the   following   formula:
+= IF(G8 > 0, "YES","NO")
+This   formula   will   display   "YES" if   the   profit   is   positive   and   "NO" if   it   is   not.
+Note:   When   using   text values   in Excel   formulas, always enclose   them   in quotation   marks   ("       ").   If you don’t,   Excel   will   return   an   error   (#NAME?).
+2.4.1          Applying   Formulas   Across   Rows   Using   the   Fill   Handle
+Once you’ve entered your formulas, you can quickly apply them   to   the   entire   dataset   using   the   Fill   Handle.   To   do   this:
+•    Select   the   cell(s) containing   the   formula(s) you   want   to   copy.
+•    Hover   over   the   bottom-right   corner   of   the   selected   cell(s) until   a   small   square   appears—this   is   the   Fill   Handle.
+•    Click and drag the   Fill   Handle down or across   to   fill   the   formula   into   the   adjacent   cells.
+This method allows you to efficiently apply the formulas to   all relevant rows   or   columns.
+2.5          Conditional   Formatting
+Conditional   formatting   is   a   powerful   tool   in   Excel   that   helps   you   visually   emphasise   specific   values   in   your   dataset.    In   this   exercise, we’ll use it to highlight the cells   that display   "YES" or   "NO" for profit,making patterns   easier to   identify   at   a   glance.
+Step   1    Select   the   Range   of   Cells:   Highlight   the   cells   where   you   want   to   apply   conditional   formatting,   e.g.   I8:I19.   Step   2    Open   the   Conditional   Formatting   Menu:   Navigate   to   Home   →   Conditional   Formatting.
+Step   3    Create   a   Rule   for   "YES":
+Select   New   Rule... from   the   drop-down   menu, then   choose   the   Classic   style.   Next, select   Only   format   cells   that   contain from   the   list   of   rule   types.   In   the   options, choose   Specific   Text,   select   containing,   and   type   YES   in   the   text   box.
+Note:   You can choose   from a variety of   pre-defined rules or create your own custom   rule   for more specific needs.
+Step   4    Choose   a   Format:
+In   the   Format   with   drop-down,   select   a   fill   colour   to   highlight   the   cells   containing   "YES"   (e.g.,   Green      Fill   with      Dark Green   Text).   Click   OK   to   apply   the   rule.
+Step   5    Create   a   Rule   for   "NO":
+Repeat   the   process   for   the   cells   that   contain   "NO", but   choose   a   different   fill   colour   (e.g.,   Red   Fill   with   Dark   Red   Text)   to distinguish them from the   "YES" entries.
+2.6          Data   Analysis   Functions
+To wrap up,   we’ll use   some   of Excel’s built-in functions   to   summarise   and   analyse   our   data.    These functions   will   allow   us   to   quickly count, calculate, and identify key metrics related to our profit data.
+Step   1    Counting   Profitable   Months:
+To   count   the   number   of months   where   profit   was   made,   we   can   either   use   the   COUNTIF   function   or   sum   the   Profit   dummy variable.
+•    Using   COUNTIF: This function counts the   number   of cells   that   meet   a   specific   condition.   To   count   the   months   with profit, use the following formula:
+= COUNTIF(I8 :   I19,   "YES")
+This   counts   the   number   of   cells   in   the   range   I8:I19 that   contain   "YES".
+•    Using   SUM:   If you’ve   created   a   dummy   variable   for   profit   (1   for   profit,   0   for   no   profit),   you   can   use   the   SUM   function to count the number of   profitable months:
+= SUM(H8 :   H19)
+This   adds   up   the   values   in   the   dummy   variable   column   (H8:H19),   effectively   counting   how   many   months   were profitable.
+Step   2    Calculating   the   Average   Profit:
+To find the average profit, use the AVERAGE function.   This will   calculate the   mean   of the profit   values   in   your   dataset.   Enter the following formula in a new   cell:
+= AVERAGE(G8 :   G19)
+This   formula   calculates   the   average   profit   from   the   values   in   the   range   G8:G19.
+Step 3    Finding the Minimum and Maximum   Profit:
+You can quickly identify the lowest and highest profit using the   MIN and   MAX functions:   =   MIN(G8 :   G19)
+and
+= MAX(G8   :   G19)
+These functions provide   a quick and efficient way to   summarise your   data   and   gain insights   into   overall performance.
+2.7          Plotting   a   Line   Graph   for   Monthly   Profit
+Visualising data is a key part of analysis, as it allows you to easily identify   trends   and patterns.   Lastly,   we’ll   create   a   line   graph   to   display   the   monthly   profit   using   Excel’s   Insert   tab.
+Step   1    Select   the   Data:   Highlight   the   range   of   cells   containing   the   profit   values,   e.g.,   G7:G19, including   the   headers.   Step   2    Open   the   Insert   Tab:   Go   to   the   Insert   tab, where   you’ll   find   various   charting   and   graphing   options.
+Step 3    Choose a Line Graph:   Click the   Line   Chart icon   and   select the   basic   line   chart   option   from   the   available   choices.   Step   4    Customising   the   Chart:
+After the graph is created, you can format it to make it more   informative   and   visually   appealing:
+•    Add   Axis   Titles:   Navigate   to   Chart   Design   →   Add   Chart   Element   →   Axis   Titles, and   then   label   the   horizontal axis   as   “Month” and   the   vertical   axis   as   “Profit”   .
+•    Title   the   Chart:   Provide   an   appropriate   title   for   the   chart,   e.g.,   Monthly   Profit   for   2020.
+•    Customise   the   Line   and   Data   Markers:    To   customise   the   line’s    appearance, double-click   on   it   to   open   the   Format   Data   Series pane.    In   the   Fill      Line tab,   click   Marker,   expand    Marker   Options,   and   choose   Built-in to select the desired marker type.   You can also adjust the marker   size   for better   visibility.
+•    Fade   Out   Gridlines   (Optional):    To    soften   the   gridlines,   double-click   on   any   gridline   to   select   them.       In   the   Format   Major   Gridlines   pane, under   the   Fill      Line   tab, adjust   the   transparency   level   to   your   preference.
+•    Add a   Trendline:   A trendline can represent   the   overall   direction   of the   data   over   time.   To   add   a   trendline,   go   to   Chart   Design   →   Add   Chart   Element   →   Trendline,   and   select   Linear.
+In this example, a trendline with a positive slope   is   added,   showing   that   monthly profits   are   trending   upward.
+To   distinguish   the   trendline   from   the   data   line, you   can   add   a   legend:   Go   to   Chart   Design   →   Add   Chart   Element →   Legend, and   select   the   desired   location   (e.g.,   Bottom).This process offers a   simple way to visualise monthly profit   using   a   line   graph,   making   it   easier   to   spot   trends   and   patterns   over time.   Now that you’ve learned how to create and customise a line graph, try experimenting with other types of   charts, such   as bar or pie charts, to visualise different aspects of your data on   your   own.
 
          
 加QQ：99515681  WX：codinghelp  Email: 99515681@qq.com
