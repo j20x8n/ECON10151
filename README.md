@@ -1,156 +1,134 @@
 java c
-ECON10151   Lecture 4
-Managing   Data with   Excel   Functions
-Oct   2024
-Learning Outcomes
-•    Be   able to   effectively   retrieve data from   a dataset   using   VLOOKUP,   INDEX,   and   MATCH   functions,   and   apply them to   large datasets.
-•    Understand the   differences   and   use   cases   of   VLOOKUP versus   INDEX   and   MATCH,   enabling them   to   choose the appropriate function based on specific data   retrieval   needs.
-IntroductionExcel   offers   a   wide   range   of   powerful   functions   that   can   help   you   manage,   analyse,   and   extract   valuable   insights from data.   This week, we’ll focus on three key functions that   are   essential for working with   data   effec-   tively:   VLOOKUP,   MATCH,   and   INDEX.   These   functions   will   enable   you   to   quickly   find   specific   information,   locatedata within a table, and   retrieve values from different parts of   your   dataset.
-1         VLOOKUP
-In   this   section,   we   will   explore   the   syntax   of   VLOOKUP   and   will   break   down   the   arguments   so   that   you   can understand   how they work.
-1.1         VLOOKUP   Syntax
-The   VLOOKUP   function   searches   for   a   value   in   the   first   column   of   a   table   and   returns   a   value   in   the   same   row from another column.
-Syntax:
-=VLOOKUP(lookup   value,      table   array,    col         index   num,      [range   lookup])
-Arguments:
-•    lookup   value:   The value you want to search for in the first column   of the table.
-•   table   array:    The   range   of   cells   that   contains   the   data.      The   first   column   of   this   range   is   where   the   lookup   value will be searched.
-•    col         index   num:   The   column   number   (starting   from   1) from   which   you   want   to   retrieve   the   value.
-•      [range   lookup]   : An   optional   argument.   Use   TRUE   for   an   approximate   match   or   FALSE   for   an   exact   match.   FALSE   is   recommended   for   most   cases   to   ensure   accurate   results.
-1.2            Practice   with   VLOOKUP
-InstructionsIn   this   exercise, you   will   practice   using   the   VLOOKUP   function   in   Excel   to   retrieve   specific   data   from   a   table.   You will be working with a dataset that contains information about students, their departments, academic year, and   GPA.   Follow the tasks below to complete the   exercise.
-Dataset
-The dataset contains the following columns:
-•      Student   ID:   Unique   identifier for each student.
-•    Name:   Name   of   the   student.
-•    Department:   The department the student belongs to.
-•   Year:   The academic year of the   student.
-•    GPA: The   student’s   Grade   Point   Average.
-Task   1:   Find   GPA   for   Given   Students
-You are provided with the   names   of two   students:
-•   Alice   Smith
-•    George   Patel
-Your   task   is   to   use   the   VLOOKUP   function   to   find   their   GPAs   from   the   dataset.   Follow   these   steps:
-1.    Open   Excel L4   Data and work on the worksheet   named   as   VLOOKUP.
-2.    In cells   B15 and   B16,   use the VLOOKUP   function   to   find   the   GPA   for   each   of   the   two   students.
-3.    Syntax   of   VLOOKUP:
-=VLOOKUP(lookup   value,      table   array,    col         index   num,      [range   lookup])
-4.      Setup
-•    lookup   value:   The value you want to search for in the first column of the table.
-- Set   it   to   the   student’s   name.
-•   table   array:   The range of cells that contains the data.   The first column   of this   range   is where   the   lookup   value will be searched.
-- Select the data   range covering the columns from   Student   Name to   GPA.
-•    col         index   num:   The column   number   (starting from   1) from which you want to   retrieve the value.
--   It   is   the   GPA   column, which   is   the   4th   column   in   the   range.
-•      range   lookup:   An optional argument.   Use TRUE for an approximate   match   or   FALSE for   an   exact   match.
-- We set   it to FALSE to   ensure   an   exact   match   is   found.
-Remember:      Make   sure   the   lookup   value   is   in   the   first   column   of   the   table   array.      Therefore,   when   you   select data for the table array, ensure that the   student   names   are   in the first   column   of   this   array.
-The   GPA   for   Alice   Smith:             = VLOOKUP(A15,      $B$2:$E$11,    4,      FALSE)
-The   GPA   for   George   Patel:             = VLOOKUP(A16,    $B$2:$E$11,      4,      FALSE)
-5.      Graphical   illustration of the formula:
-   
-Figure   1:   Task   1 VLOOKUP   Example
-6.    Report   the   GPAs   for   Alice   Smith   and   George   Patel.    You   should   obtain   the   following   results   once   you   have entered the formula.
-   
-Figure   2:   Task   1   Results
-Task 2:   Check   if Student   Name   Exists   in the   Dataset
-You are given the   following   names:
-•   Julia   Fernandez
-•    Michael   Green
-Your   task   is   to   use   the   VLOOKUP   function   to   check   if   these   names   exist   in   the   dataset.   Follow   these   steps:
-1.   Think:   How   to   use   VLOOKUP
-If   the   name   exists,   return   the   corresponding   Name   from   the   list.    If   not, the   function   should   return   an   error (such   as   #N/A).
-2.    Syntax   of   VLOOKUP:
-=VLOOKUP(lookup   value,      table   array,    col         index   num,    FALSE)
-3.      Setup
-•    lookup   value:   The value you want to search for in the first column of the table.
-- Set   it   to   the   student’s   name.
-•   table   array:   The range of cells that contains the data.   The first column   of this   range   is where   the   lookup   value will be searched.
--   Define table   array as   the data range covering the single column   of   Student   Name.
-•    col         index   num:   The column   number   (starting from   1) from which you want to   retrieve the value.
-- Assign   col         index   num to the first column, which is the only   column   in the   range.
-•      range   lookup:   An optional argument.   Use TRUE for an approximate   match   or   FALSE for   an   exact   match.
-- Set   range   lookup   to   FALSE   to   ensure   that   an   exact   match   is   found.
-Remember:      Make   sure   the   lookup   value   is   in   the   first   column   of   the   table   array.      Therefore,   when   you   select data for the table array, ensure that the   student   names   are   in the first   column   of   this   array.
-Julia   Fernandez:      代 写ECON10151 Lecture 4 Managing Data with Excel FunctionsR
-代做程序编程语言       = VLOOKUP(A20,$B$2:$B$11,1,FALSE)
-Michael   Green:             = VLOOKUP(A21,$B$2:$B$11,1,FALSE)
-4.      Graphical   illustration of the formula:
-   
-Figure   3:   Task   2 VLOOKUP   Example
-5.    Report whether   each   of   the   two   names   is   found   in   the   dataset.    You   should   obtain   the   following   results   once you   have entered the formula.
-   
-Figure   4:   Task   2   Results
-This suggests that Julia   Fernandez   is   included   in the dataset;   however,   Michael Green   is   not   on   the   list,   as   it   returns   an   error   (#N/A   )in   the   cell.
-2         INDEX and   MATCHIn this section, we will   briefly explore the   syntax   of the   INDEX   and   MATCH   functions.   The   INDEX   function   returns   a   value   based   on   specified   row   and   column   numbers   within   a   given   array,   while   the   MATCH   function   finds   the position of a value   in   a   row   or   column.
-We will break down their arguments to   help you   understand   how each   function works.
-INDEXThe   INDEX   function   returns   the   value   in   a   specified   cell.    You   need   to   know   the   row   and   column   numbers   of   the   cell   within   an   array   so   that   Excel   can   locate   its   position.    Once   identified,   the   function   returns   the   value   contained in   that   cell.
-Syntax:
-=INDEX(array,      row   num,      [column   num])
-Arguments:
-•    array:   The   range of cells that contains the data from which you want to   retrieve   a value.
-•      row   num:   The   row   number   in   the   array   from   which   you   want   to   retrieve   a   value.
-•      [column   num]   :   The   optional   column   number   in   the   array.   If   omitted, the   function   will   return   the   value   from the first column.
-MATCH
-The   MATCH   function   searches   for   a   specified   value   in   a   specific   column   or   a   row   and   returns   the   relative   position   of   that   value.
-Syntax:
-=MATCH(lookup   value,      lookup   array,      [match   type])
-Arguments:
-•    lookup   value:   The value you want to search for in the   array.
-•    lookup   array:   The   range   of   cells   that   contains   the   data   you   want   to   search.    The   lookup   array   here   can only be a   single   column   or   a   single   row.
-•      [match   type]   :   An optional argument.    It specifies   how   Excel should   match the   lookup   value.    Use   1   for   the   largest   valueless   than   or   equal   to   the   lookup   value, 0 for   an   exact   match, or   -1 for   the   smallest   value greater than or equal to the   lookup value.   For   most scenarios, 0   is   preferred   to   ensure   an   exact   match.
+Lecture   2:   Excel   Solver 
+ECON10151:   Computing   for   Social   Scientists 
+September   29, 2024 Excel’s   Solver   is   a   versatile   tool   designed   to   help   users   find   optimal   solutions   to   complex   decision-making   problems.   Whether   you’re   allocating   resources   in   finance,   managing   supply   chains   in   logistics,   or   scheduling   operations,   Solver   allows   you to work within constraints and identify the best outcome,   such as   maximising profits   or   minimising   costs.For example, imagine you’re managing   a factory   and   need   to   determine   the   ideal   production   levels   of two   products,   given   a limited supply of materials and labour.   Solver can help you calculate the most efficient allocation that maximises profit   while   staying within your resource limits.In   essence,   Solver   takes   your   objective—like   increasing   profit   or reducing   expenses—and   tests   different   combinations   of   variables,   subject to the constraints you   set.   It   simplifies decision-making   where   trade-offs   are   involved,   ensuring   the   result   is   not   just mathematically sound but also practical for real-world scenarios.
+1 How to Install Excel Solver 
+Solver is an Excel add-in that doesn’t load   automatically   when   you   install   Excel,   but   it’s   easy   to   enable.   Whether   you’re   using   a Mac or Windows, the steps are straightforward, though   they   differ   slightly between   the   two   operating   systems.
+1.1 Mac 
+To install Solver on a   Mac,   follow   these   steps:
+1.    Open   Excel.
+2.    Click   on   the   Tools   menu   at   the   top.
+3.    Select   Excel   Add-Ins.
+4.    In the Add-Ins   available list, tick the box   for   Solver   Add-In.
+5.    Click   OK.
+6. Note: 
+•    If Solver   Add-In isn’t listed, click   Browse to find   and install   it.
+• If   you’re   prompted   to   install   the   Solver   Add-In, select   Yes.
+7.    Once   installed, you’ll   see   the   Solver   button   under   the   Data   tab.
+1.2 Windows 
+To install Solver on Windows, follow these   steps:
+1.    Open   Excel.
+2.    Click   File   in   the   top-left   corner, then   select   Options.
+3.    In   the   Excel   Options   window,   click   Add-Ins.
+4.    At   the   bottom   of   the   window, next   to   Manage, ensure   Excel   Add-ins   is   selected, then   click   Go.
+5.    Tick the box for Solver   Add-In in   the   Add-Ins   available list.
+6.    Click   OK.
+7. Note: 
+• If   the   Solver   Add-In   is   missing   from   the   list, click   Browse   to   locate   and   install   it.
+• If   asked   to   install   the   Solver   Add-In,   select   Yes.
+8.    Once   installed, you’ll   find   the   Solver   button   in   the   Analysis   group   on   the   Data   tab.
+2 A Worked Example: Diet Optimisation In this example,   we’ll explore   a practical   scenario   often   faced by   fitness   trainers   and   dieticians:   how   to   create   a   cost-effective   yet nutritionally balanced meal plan.   Using Excel Solver, we’ll navigate through the constraints of   this problem to optimise our   meal choices,aiming for the best nutritional outcome at the lowest cost.
+Let’s   consider   four   meal   options:      Salad,   Protein   Shake,   Grilled   Chicken,   and   Pasta.    Each   of these   meals   offers   different   nutritional values and comes with a   specific   cost:
 
-
-2.1            Practice   with   INDEX   and   MATCH
-Task   1:   Obtain the GPA of the Student with   ID   33104   Using   INDEX   and   MATCHManually   finding   a   student’s   GPA   would   involve   identifying   the   correct   row   where   the   Student   ID   appears   and then locating the GPA in the corresponding column.   For small datasets, this is   simple,   but   as datasets   grow   larger, manually   finding   this   information   becomes   prone   to   error   and   time-consuming.   With   Excel’s   INDEX and   MATCH   functions, we   can   automate   this   task   and   ensure   accuracy.   Thus,   in   this   task,   we   can   use   MATCH to find   out the   row   number   and the   column   number.    Then,   INDEX   can   return the   value   of   GPA   based   on the   row   number of Student   ID and the   column   number   of   GPA.
-Your   objective   is   to   find   the   GPA   of   the   student   with   the   Student   ID:   33104.    To   achieve   this   goal,   we   can follow these steps:
-1.    Use   the   MATCH   function   to   find   the   row   number   where   the   Student   ID   33104   is   located.
-•    (Worksheet:   MATCH   and   INDEX)   Begin   with   the   cell   I7 and   type   MATCH   formula   in   the   cell.
-•    Syntax   of   MATCH:
-=MATCH(lookup   value,      lookup   array,      [match   type]).
-•      Setup
-。lookup   value:   The value you want to search for in   the array.
-- This   case,   it   is   33104   (the   Student   ID   you’re   looking   for).
-。lookup   array:   The range of cells that contains the data you want to search.   The lookup   array   here can only be a   single   column   or   a   single   row.
-- We select the column of Student   IDs   (column   A   in   the   dataset).
-。   [match   type] should   be   set   to   0 for   an   exact   match.
-The   row   number   of   Student   ID   33104:
-= MATCH(H7,    A2:A11,    0)
-•      Graphical   illustration of the   formula:
-   
-   
-Figure 5:   Task   1   MATCH   Example:   row   no.
-   
-2.    Use   the   MATCH   function   to   find   the   column   number   where   the   GPA   is   located.
-•    Begin   with   the   cell   I11 and   type   MATCH   formula   in   the   cell.
-•    Syntax   of   MATCH:
-   
-=MATCH(lookup   value,      lookup   array,      [match   type]).
-•      Setup
-
-
-
-。lookup   value:   The value you want to search for in   the array.
--   It   is   GPA   (the   header   you   are   looking   for   in   the   row,   including   all   headers).
-。lookup   array:   The range of cells that contains the data you want to search.   The lookup   array   here can only be a   single   column   or   a   single   row.
-- We   select   the   row   of   headers   (Row   1   in   the   dataset).   。   [match   type] should   be   set   to   0 for   an   exact   match.
-The column   number of   GPA:
-= MATCH(H11,A1:E1,0)
-•      Graphical   illustration of the   formula
-   
-Figure   6:   Task   1   MATCH   Example:   column   no.
-3.    Use   the   INDEX   function   to   return   the   GPA   of   the   student   with   ID   33104
-We can fill in the INDEX function based on the row number   and the column   number found   using the MATCH   function.
-•    Begin   with   the   cell   I17 and   type   INDEX   formula   in   the   cell.
-•    Syntax   of   INDEX: =INDEX(array,    row   num,       [column   num])
-•      Setup
-。array contains all of the values in this   student   information data   set.   。row   num   corresponds   to   the   row   number   of   the   student   ID   33104.
-。col   num corresponds to the column   number where GPA   is   located.
-The   GPA   of   the   student   with   ID   33104:
-= INDEX(A1:E11,I7,I11)
-•      Graphical   illustration of the   formula:
-   
-Figure   7:   Task1   INDEX   Example
+Salad 
+Protein Shake 
+Grilled Chicken 
+Pasta 
+Calories 
+300 
+250 
+450 
+600 
+Protein (g) 
+10 
+30 
+35 
+12 
+Fat (g) 
+7 
+3 
+10 
+15 
+Cost ($) 
+6.5 
+5 
+12 
+8 
+The challenge is to create a   meal plan   that meets specific nutritional goals while minimising the total cost.   In   this   case,   the goals   are:
+• At   least   1800 calories   per   day,
+• A   minimum   of   90 grams   of   protein,
+• No   more   than   45 grams   of   fat.Here’s how   Solver comes into play.   We need   to   select   the   number   of   servings   of each   meal   (Salad,   Protein   Shake,   Grilled   Chicken, and Pasta) that together satisfy these nutritional requirements.   At the   same   time,   we   aim   to   minimise   the   total   cost   of   the meal plan.   This type of   problem is ideal for Solver, as it allows us   to   work   within   defined   constraints   (calories, protein,   and   fat limits) while optimising for cost.For example, you might have   a   client   with   a   fixed   daily   budget   but   also   the   need   to   maintain   certain   nutritional   standards.   By   inputting   the   nutritional   data   and   cost   for   each   meal   into   Excel,   Solver   can   identify   the   most   cost-effective   combination   that   achieves   the   target   nutritional   intake.    This   not   only   saves   time   but   also   ensures   that   the   plan   is   scientifically   backed   by   quantitative analysis.
+3 How to Use Solver in a Nutshell To   effectively   use   Excel   Solver   for   optimisation   problems, follow   these   key   steps.   Solver   works   by   varying   the   values   of   specific variables   (behind   the   scenes)   within   the   limits   you   define   to   find   the best possible   solution   to   your problem.    Here’s   a   simple   guide to get   started:
+1. Construct a Detailed Spreadsheet:    Start   by   organising   your   spreadsheet   with   all   relevant   data.       Make   sure   that   the   problem   components—like   costs,   nutritional   values,   or   other   important   factors—are   clearly   laid   out   so   that   Solver   can   interpret them correctly.
+• Identify Decision Variables: Decision variables are   the   values   Solver   will   adjust   to   find   the   optimal   solution.   In   Excel,   these   are   also   known   as Changing Cells.    For   example,   in   the   diet   optimisation   problem,   the   decision   variables are the number of servings of each meal option.
+• Define the Objective Function:   The objective function is   what   you   want   to   optimise,   such   as   minimising   cost   or   maximising profit.   In Solver, this is referred to   as the Set Objective.   In   our   diet   example,   the   objective   function   is the total cost of the meal plan, which we   aim   to   minimise.
+• Incorporate Constraints: Constraints are   the   rules   or   limits   that   your   solution   must   follow,   such   as   nutritional   needs   or budget   limits.    These   ensure   that   Solver’s   solution   makes   sense   in real-world   situations.    In   our   case,   the   constraints   are the minimum and maximum nutritional goals,   like   needing   at   least   1800   calories   and   no   more   than 45 grams   of   fat.
+2. Run Solver:    Once   your   spreadsheet   is   set   up   with   the   decision   variables,   objective   function,    and   constraints,   you’re   ready to run Solver.   Head to the   Data tab,   click   on   Solver,   and   it   will   begin   adjusting   the   decision   variables   within   your   constraints to find the best possible outcome.
+3. Review the Solution:   After   Solver   has   finished,   it   will   display   the   optimal   solution   directly   in   your   spreadsheet.    This   will include the values for the decision variables that   best   meet   your   objective,   while   adhering   to   the   constraints.   At   this   point, you can check the results and ensure they are   sensible for your particular problem.By following these   steps, you can   confidently   use   Solver   for   various   optimisation   challenges,   whether   it’s   finding   the best   resource   allocation, balancing   a budget,   or creating cost-effective   diets.    Solver handles   the   complex   calculations,   leaving   you   to focus on analysing the results and making informed decisions.
+4 Solving the Diet Optimisation Problem 
+4.1 Setting up the Spreadsheet To   solve   the   diet   optimisation   problem   using   Excel   Solver, we   need 代 写ECON10151: Computing for Social Scientists Lecture 2: Excel SolverSQL
+代做程序编程语言  to   organise   our   data   so   that   Solver   can   process   it   efficiently.   This   involves   defining   the   decision   variables,   setting   up   the   objective   function,   and   establishing   the   necessary   constraints.   Follow these steps to set   up   your   spreadsheet:
+Step 1: Define the Decision Variables 
+• In   cells   B2 :   E2, create   headings   for   each   type   of   food   (e.g.,   Salad, Protein   Shake,   Grilled   Chicken,   Pasta).
+•    In   cells   B3 :   E3, enter   initial   trial   values   for   the   amount   of   each   food   to   include   in   the   meal   plan.   Make   sure   at   least   one of the values is greater than zero to allow Solver to work with   a   non-empty   starting point.
+Step 2: Set up the Objective Function 
+• Reference the   number   of   units   of   each   food   from   your   decision   variables   by   entering   =B3,   =C3,   etc.,   in   cells   B7 :   E7.
+– It’s important to reference the number of   units rather than manually typing them.   By referencing, any   changes made   to   the   decision   variables   (in   B3   :   E3)   will   automatically   update   the   rest   of your   calculations.    This   not   only   saves   time but also reduces the risk of errors, ensuring consistency across your calculations.
+• In   cells   B8 :   E8, input   the   cost   per   unit   for   each   food   item   (e.g.,   6.5 for   Salad,   5 for   Protein   Shake,   etc.).
+•    To calculate the total cost of the meal   plan,   use   the   SUMPRODUCT function   in   cell   B10.   The   formula   will   look   like   this:   = SUMPRODUCT(B7 :   E7,   B8 :   E8)The SUMPRODUCT function multiplies   the number of   units of each food (in   B7 :   E7) by its respective cost (in   B8   :   E8),   and then   sums   the   results.    This   function   essentially   performs   element-wise   multiplication   of   B7 × B8,   C7 ×   C8,   and   so   on,   then adds them together.   The formula is equivalent to:
+Total   Cost   = B7 × B8+C7 ×   C8+ D7 × D8+ E7 × E8
+This gives the total cost of the diet based on the quantities you have   selected   for   each   food.
+Step 3: Establish the Constraints 
+•    Recreate   the   table   from   the   problem   statement,   listing   the   nutritional   information   (calories,   protein,   fat)   for   each   food   item in cells   B14   :   E16.
+•    Use the SUMPRODUCT function again to calculate the total nutrients based on the amounts chosen in the decision variables.   For example, to calculate total calories, use:
+= SUMPRODUCT($B$7 : $E$7,   B14 :   E14) 
+This will give you the total calories consumed based on the   servings of each food. 
+–    Note: The dollar   signs   ($$) in the formula   ensure   that   the   cell   references   remain   fixed   (absolute   references)   when   copying the formula to other cells.
+• In   Column   G, specify   the   inequalities   for   your   constraints   (e.g.,   >=      1800 for   calories,   <= 45 for fat).
+• In   Column   H, enter   the   target   values   for   each   constraint   (e.g.,   1800   for   calories,   45   for   fat).
+By following these   steps, you will have   constructed   a   well-organised   spreadsheet   that   Solver   can   use   to   optimise   the   meal   plan.   Once everything is set up, you are ready to run   Solver   and find   the best   solution.
+4.2 The Solver Parameters Dialog Box 
+To effectively use Solver, follow these   steps:
+1. Open the Solver Parameters Dialog Box 
+Begin by navigating to   Data   >   Solver to open the Solver Parameters Dialog Box.
+2. Set the Objective and Problem Type In   this   step:
+•    In   the   "Set   Objective" box,   specify   the   cell   that   calculates   the   objective   function   (e.g.,   Cell   B10,   which   calculates the total cost).
+•    Choose whether you want to minimise or maximise   the   objective.   For   our   problem,   since   we   want   to   minimise   the   total   cost,   select   "   Min".
+3. Identify Decision Variables 
+Next, specify the cells that represent your decision variables:
+•    Click in the "By   Changing   Variable   Cells" box.
+•    Select   the   cells   containing   the   decision   variables   (e.g.,   B3 :   E3).    These   are   the   cells   Solver   will   adjust   to   find   the optimal solution.
+4. Add Constraints 
+To ensure that Solver respects the constraints in the problem:
+• Click   the   "Add" button   on   the   right.
+•    In   the   "Cell   Reference" box,   select   the   cell   that   calculates   the   total   for   the   constraint   (e.g., for   calories,   choose   Cell F14, which   sums   the   total   calories   consumed).
+•    Choose   the   appropriate   constraint   type   (<=, >=, =) and   then   input   the   target   value   for   that   constraint   (e.g., Cell   H14,   which   specifies   at   least   1800   calories).
+•    Click   "OK" to   add   the   constraint.
+Repeat this process for each constraint (e.g., protein, fat) to ensure   Solver respects   all nutritional requirements.
+5. Make Variables Non-Negative 
+Ensure all decision variables remain non-negative:
+•    Check   the   box   titled    "Make    Unconstrained   Variables    Non-Negative".       This   ensures   that   all   variable   values   are   greater than or equal to zero, meaning Solver won’t   suggest negative   servings   of food.
+6. Select the Solving Method Choose the solving method:
+•    Select   "Simplex   LP" as the   solving method.   This method   is   appropriate   for   linear programming   problems   like   this one.
+7. Solve the Problem 
+Once everything is   set up:
+•    Click the   "Solve" button to   run   Solver   and   find   the   optimal   solution.    Solver   will   adjust   the   decision   variables   and   provide a solution that minimises   the cost while meeting   all the   constraints.
+4.3 Solution 
+Once you’ve completed the Solver process, you’ll notice the following changes in   your   spreadsheet:
+•    The Solver Parameters Dialog Box will close   automatically.
+• The   values   in   the   decision   variable   cells   (e.g.,   B3 :   E3)   will   update   to   reflect   the   optimal   solution   that   Solver   has   found.
+•    As   a result,   the   objective function   and   caluculations under   constraints in   your   spreadsheet   will   also   adjust   to   reflect   the   updated decision variables.
+This updated information indicates that Solver has successfully applied the   optimal   solution to   your   optimisation problem.
+4.4 Final Remark: 
+In   practical   applications,   serving   sizes   are   usually   represented   as   whole   numbers   (e.g.,   you   can’t   eat   half a   serving   of grilled   chicken).   If the optimal solution contains fractional serving sizes, this might   appear   unusual.
+Question: How might we adjust our constraints or model to ensure   that the   resulting   serving   sizes   are   whole   numbers?
+Answer: To ensure that Solver produces whole numbers for the   serving   sizes,   you   need   to   adjust   the   constraints   to   require   integer values for the decision variables.   Follow these steps:
+• Open   the   Solver   Parameters   Dialog   Box   again   by   clicking   on   Data   >   Solver.
+• Click   the   "Add" button   to   introduce   a   new   constraint.
+• In   the   "Cell   Reference" box,   select   the   cells   representing   the   decision   variables   (e.g.,   B3 :   E3).
+•    In   the   "Constraint"   box,   select   int   (integer),   which   ensures   that   the   values   for   the   decision   variables   are   restricted   to   whole numbers.
+• Click   "OK" to   add   the   constraint, and   then   click   "Solve"   again   to   re-run   Solver   with   the   updated   settings.
+By adding this integer constraint, you ensure   that   Solver provides   solutions   with   whole   number   servings,   which   makes   the   results more practical   for real-life applications.
 
          
 加QQ：99515681  WX：codinghelp  Email: 99515681@qq.com
